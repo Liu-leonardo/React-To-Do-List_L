@@ -1,6 +1,7 @@
-# Welcome to your Expo app 👋
+# Welcome to TO-DO-LIST 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+拖延症严重？缺少计划性？没关系！使用TO-DO-LIST来帮助你快速规划你的每日安排.
+下面的还没想好怎么编，就这样吧。
 
 ## Get started
 
