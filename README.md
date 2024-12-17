@@ -25,12 +25,11 @@
    git pull origin <branch-name>
    ```
 
-4.推送分支
+3. 拉取分支
 
    ```bash
    git push origin <branch-name>
    ```
-
 
 ## Get started
 
