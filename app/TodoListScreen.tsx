@@ -14,6 +14,7 @@ export default function TodoListScreen() {
 
   return (
     <View style={styles.container}>
+      {/* 将标题向下移动 30px */}
       <Text style={styles.title}>To-Do List(待办列表)</Text>
       <TextInput
         placeholder="在这里输入你的计划"
@@ -32,8 +33,26 @@ export default function TodoListScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#fff' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 10, borderRadius: 5 },
-  task: { fontSize: 18, marginVertical: 5 },
+  container: { 
+    flex: 1, 
+    padding: 16, 
+    backgroundColor: '#fff' 
+  },
+  title: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    marginBottom: 10, 
+    marginTop: 15, // 向下移动 30px
+  },
+  input: { 
+    borderWidth: 1, 
+    borderColor: '#ccc', 
+    padding: 10, 
+    marginBottom: 10, 
+    borderRadius: 5 
+  },
+  task: { 
+    fontSize: 18, 
+    marginVertical: 5 
+  },
 });
