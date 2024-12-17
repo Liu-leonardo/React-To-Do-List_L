@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import TDListArtPacman from './TDListArtPacman'; // 引入吃豆人组件
 
 interface Task {
   id: number;
@@ -85,6 +85,7 @@ function SwipeableTask({
 }) {
   const translateX = useRef(new Animated.Value(0)).current;
   const resetTimer = useRef<NodeJS.Timeout | null>(null);
+  const [isMouthOpen, setMouthOpen] = useState(true);
 
   // 复位任务块
   const resetPosition = () => {
@@ -136,12 +137,17 @@ function SwipeableTask({
       <View style={styles.deleteTask}>
         <TouchableOpacity
           onPress={() => {
-            onDelete();
-            resetPosition();
+            setMouthOpen(false); // 触发吃豆人闭嘴动画
+            setTimeout(() => {
+              onDelete();
+              resetPosition();
+              setMouthOpen(true); // 重置吃豆人状态
+            }, 300); // 300ms 等待动画结束后删除任务
           }}
           style={styles.trashButton}
         >
-          <Ionicons name="trash" size={24} color="#fff" />
+          {/* 使用吃豆人组件 */}
+          <TDListArtPacman isMouthOpen={isMouthOpen} />
         </TouchableOpacity>
       </View>
 
