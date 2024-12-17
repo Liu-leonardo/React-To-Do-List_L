@@ -3,6 +3,35 @@
 拖延症严重？缺少计划性？没关系！使用TO-DO-LIST来帮助你快速规划你的每日安排.
 下面的还没想好怎么编，就这样吧。
 
+## 分支操作
+
+如果你想要对分支进行修改，欢迎！XD
+
+1. 创建分支
+
+   ```bash
+   git checkout -b <branch-name>
+   ```
+
+2. 合并分支
+
+   ```bash
+   git merge <branch-name>
+   ```
+
+3. 拉取分支
+
+   ```bash
+   git pull origin <branch-name>
+   ```
+
+4.推送分支
+
+   ```bash
+   git push origin <branch-name>
+   ```
+
+
 ## Get started
 
 1. Install dependencies
