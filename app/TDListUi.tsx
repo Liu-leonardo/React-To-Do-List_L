@@ -24,29 +24,25 @@ export default function TDListUi({
   tasks: Task[];
   onDelete: (id: number) => void;
 }) {
-  const resetFunctions = useRef<(() => void)[]>([]); // 存储所有复位函数
+  const resetFunctions = useRef<(() => void)[]>([]);
   const globalResetTimer = useRef<NodeJS.Timeout | null>(null);
 
-  // 注册复位函数
   const registerReset = (resetFunc: () => void) => {
     resetFunctions.current = [...resetFunctions.current, resetFunc];
   };
 
-  // 重置所有任务块
   const resetAllTasks = () => {
     resetFunctions.current.forEach((reset) => reset());
     resetFunctions.current = [];
   };
 
-  // 启动全局计时器
   const startGlobalTimer = () => {
     if (globalResetTimer.current) clearTimeout(globalResetTimer.current);
     globalResetTimer.current = setTimeout(() => {
       resetAllTasks();
-    }, 10000); // 10 秒无操作自动复位
+    }, 10000);
   };
 
-  // 点击屏幕时触发复位
   const handleScreenPress = () => {
     resetAllTasks();
   };
@@ -85,9 +81,8 @@ function SwipeableTask({
 }) {
   const translateX = useRef(new Animated.Value(0)).current;
   const resetTimer = useRef<NodeJS.Timeout | null>(null);
-  const [isMouthOpen, setMouthOpen] = useState(true);
+  const [isChomping, setIsChomping] = useState(false);
 
-  // 复位任务块
   const resetPosition = () => {
     Animated.timing(translateX, {
       toValue: 0,
@@ -96,30 +91,26 @@ function SwipeableTask({
     }).start();
   };
 
-  // 启动单个任务的自动复位计时器
   const startAutoResetTimer = () => {
     if (resetTimer.current) clearTimeout(resetTimer.current);
     resetTimer.current = setTimeout(() => {
       resetPosition();
-    }, 10000); // 10 秒自动复位
+    }, 10000);
   };
 
-  // 注册复位函数并启动计时器
   const handleExpand = () => {
     registerReset(resetPosition);
     startGlobalTimer();
     startAutoResetTimer();
   };
 
-  // 滑动手势检测
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (_, gesture) => {
-      if (gesture.dx < 0) translateX.setValue(gesture.dx); // 处理左滑
+      if (gesture.dx < 0) translateX.setValue(gesture.dx);
     },
     onPanResponderRelease: (_, gesture) => {
       if (gesture.dx < -30) {
-        // 滑动超过 30px，展开任务块
         Animated.timing(translateX, {
           toValue: -100,
           duration: 200,
@@ -133,21 +124,21 @@ function SwipeableTask({
 
   return (
     <View style={styles.taskWrapper}>
-      {/* 底层功能任务块 */}
+      {/* 底层功能任务块：用Pac-Man代替垃圾桶图标 */}
       <View style={styles.deleteTask}>
         <TouchableOpacity
           onPress={() => {
-            setMouthOpen(false); // 触发吃豆人闭嘴动画
-            setTimeout(() => {
-              onDelete();
-              resetPosition();
-              setMouthOpen(true); // 重置吃豆人状态
-            }, 300); // 300ms 等待动画结束后删除任务
+            setIsChomping(true);
           }}
           style={styles.trashButton}
         >
-          {/* 使用吃豆人组件 */}
-          <TDListArtPacman isMouthOpen={isMouthOpen} />
+          <TDListArtPacman
+            isChomping={isChomping}
+            onChompComplete={() => {
+              onDelete();
+              resetPosition();
+            }}
+          />
         </TouchableOpacity>
       </View>
 
@@ -189,7 +180,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingRight: 20,
   },
-  trashButton: { justifyContent: 'center', alignItems: 'center' },
+  trashButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 40,
+    height: 40,
+  },
   taskContainer: {
     backgroundColor: '#fff',
     borderRadius: 8,
