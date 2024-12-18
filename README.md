@@ -5,7 +5,7 @@
 
 ### 目前项目搭建进度和预期目标
 
-![目前进度](https://img.shields.io/badge/进度-40%25-blue)
+![目前进度](https://img.shields.io/badge/进度-30%25-blue)
 
 #### 预期目标：
 - [x] 展示todolist列表
