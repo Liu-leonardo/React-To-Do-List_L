@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import TDListUi from './TDListUi';
+import TDListTaskBlock from './TDListTaskBlock';
 import TDListPopup from './TDListPopup';
 
 interface Task {
@@ -24,7 +24,7 @@ export default function TodoListScreen() {
 
   return (
     <View style={styles.container}>
-      <TDListUi tasks={tasks} onDelete={deleteTask} />
+      <TDListTaskBlock tasks={tasks} onDelete={deleteTask} />
       <TDListPopup
         visible={isPopupVisible}
         onClose={() => setPopupVisible(false)}
