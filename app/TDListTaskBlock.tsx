@@ -50,7 +50,6 @@ export default function TDListTaskBlock({
   return (
     <TouchableWithoutFeedback onPress={handleScreenPress}>
       <View style={styles.container}>
-        <Text style={styles.title}>To-Do List (待办列表)</Text>
         <FlatList
           data={tasks}
           keyExtractor={(item) => item.id.toString()}
@@ -154,7 +153,7 @@ function SwipeableTask({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#F0F4F8' },
+  container: { flex: 1, padding: 1, backgroundColor: 'transparent' },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
