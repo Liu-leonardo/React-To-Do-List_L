@@ -17,7 +17,7 @@ interface Task {
   completed: boolean;
 }
 
-export default function TDListUi({
+export default function TDListTaskBlock({
   tasks,
   onDelete,
 }: {
