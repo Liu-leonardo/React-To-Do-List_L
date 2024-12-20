@@ -153,19 +153,15 @@ function SwipeableTask({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 1, backgroundColor: 'transparent' },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 50,
-    marginBottom: 20,
-    color: '#333',
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: 'transparent',
   },
   taskWrapper: {
     position: 'relative',
-    marginBottom: 10,
-    marginHorizontal: 30,
+    marginBottom: 10, // 增加任务块之间的间距
+    marginHorizontal: 25, // 调整任务块左右的间距
   },
   deleteTask: {
     position: 'absolute',
@@ -173,10 +169,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#FF5722',
+    backgroundColor: '#B0B0B0', // 修改为浅灰色
     justifyContent: 'center',
     alignItems: 'flex-end',
-    borderRadius: 8,
+    borderRadius: 20, // 调整任务块的圆角
     paddingRight: 20,
   },
   trashButton: {
@@ -186,14 +182,17 @@ const styles = StyleSheet.create({
     height: 40,
   },
   taskContainer: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 16,
+    backgroundColor: '#4A4A4A', // 修改为中灰色的任务块背景
+    borderRadius: 20, // 调整任务块的圆角
+    padding: 20, // 增加内边距
     elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  taskText: { fontSize: 16, color: '#333' },
+  taskText: { 
+    fontSize: 16, 
+    color: '#FFFFFF', // 确保文字在深灰色背景上清晰可读
+  },
 });

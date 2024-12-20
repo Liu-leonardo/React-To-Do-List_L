@@ -74,8 +74,8 @@ export default function TodoListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#AEC6FF',
-    paddingHorizontal: 15,
+    backgroundColor: 'rgba(245, 245, 220, 0.7)', // 添加透明度，使颜色更通透
+    paddingHorizontal: 8,
     paddingTop: 50,
   },
   statusBarPlaceholder: {
@@ -85,17 +85,19 @@ const styles = StyleSheet.create({
     fontSize: 30, // 大标题字体大小
     fontWeight: 'bold',
     marginBottom: 10, // 与下方元素的间距
+    color: '#333', // 确保在浅色背景上的文字可读性
   },
   subTitle: {
     fontSize: 18, // 小标题字体大小
     fontWeight: '600',
     marginVertical: 10,
+    color: '#333',
   },
   addButton: {
     position: 'absolute',
     bottom: 30,
     right: 30,
-    backgroundColor: '#1E3A8A', // 调整为与每日推荐模块一致的深蓝色
+    backgroundColor: '#4A4A4A', // 深蓝色按钮背景
     borderRadius: 30, // 圆形按钮
     width: 60,
     height: 60,
