@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     width: 180, // 每个任务块宽度
     height: 110, // 每个任务块高度
     marginHorizontal: 5,
-    backgroundColor: '#1E3A8A', // 深蓝色背景
+    backgroundColor: '#4A4A4A', // 中灰色的任务块背景
     borderRadius: 20, // 更大的圆角弧度
     justifyContent: 'center',
     alignItems: 'center',

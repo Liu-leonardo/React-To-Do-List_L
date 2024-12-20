@@ -74,7 +74,7 @@ export default function TodoListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(80, 120, 200, 0.7)', // 添加透明度，使颜色更通透
+    backgroundColor: 'rgba(245, 245, 220, 0.7)', // 添加透明度，使颜色更通透
     paddingHorizontal: 8,
     paddingTop: 50,
   },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     right: 30,
-    backgroundColor: '#1E3A8A', // 深蓝色按钮背景
+    backgroundColor: '#4A4A4A', // 深蓝色按钮背景
     borderRadius: 30, // 圆形按钮
     width: 60,
     height: 60,
