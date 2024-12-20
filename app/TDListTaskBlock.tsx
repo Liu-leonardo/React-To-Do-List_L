@@ -153,7 +153,7 @@ function SwipeableTask({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 1, backgroundColor: 'transparent' },
+  container: { flex: 1, padding: 20, backgroundColor: 'transparent' },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
