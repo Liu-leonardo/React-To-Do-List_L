@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 
 interface TDListPopupProps {
   visible: boolean;
@@ -30,7 +30,13 @@ export default function TDListPopup({ visible, onClose, onAddTask }: TDListPopup
   return (
     <Modal transparent visible={visible} animationType="fade">
       <TouchableWithoutFeedback onPress={onClose}>
-        <View style={styles.overlay} />
+        <View style={styles.overlay}>
+          <BlurView
+            style={StyleSheet.absoluteFillObject} // 使毛玻璃覆盖整个屏幕
+            intensity={60} // 调整模糊强度（50-100 更自然）
+            tint="dark" // 设置毛玻璃效果的颜色风格（light/dark）
+          />
+        </View>
       </TouchableWithoutFeedback>
 
       <View style={styles.modalContainer}>
@@ -41,14 +47,13 @@ export default function TDListPopup({ visible, onClose, onAddTask }: TDListPopup
           value={task}
           onChangeText={setTask}
         />
-        {/* 底部按钮 */}
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.cancelButton} onPress={onClose}>
+          <TouchableOpacity style={styles.cancelButton} onPress={onClose}>
             <Text style={styles.buttonText}>取消</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
             <Text style={styles.buttonText}>添加</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -57,8 +62,8 @@ export default function TDListPopup({ visible, onClose, onAddTask }: TDListPopup
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    ...StyleSheet.absoluteFillObject, // 填满屏幕
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // 叠加浅黑色透明层，增强对比
   },
   modalContainer: {
     position: 'absolute',
