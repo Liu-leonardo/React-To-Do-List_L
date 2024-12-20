@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TDListTaskBlock from './TDListTaskBlock';
 import TDListPopup from './TDListPopup';
 import TDListDailyTasks from './TDListDailyTasks';
+import TDListTaskbar from './TDListTaskbar'; // 引入状态栏组件
 
 interface Task {
   id: number;
@@ -21,12 +22,18 @@ export default function TodoListScreen() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [mainTitle, setMainTitle] = useState<string>("");
+  const [batteryLevel, setBatteryLevel] = useState<number>(10); // 初始电量
 
   useEffect(() => {
     // 每次加载随机选取一个标题
     const randomTitle = TITLES[Math.floor(Math.random() * TITLES.length)];
     setMainTitle(randomTitle);
   }, []);
+
+  useEffect(() => {
+    // 动态更新电池电量
+    setBatteryLevel(Math.max(0, 10 - tasks.length));
+  }, [tasks]);
 
   const addTask = (taskText: string) => {
     setTasks([...tasks, { id: Date.now(), text: taskText, completed: false }]);
@@ -36,8 +43,25 @@ export default function TodoListScreen() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+  const resetTasks = () => {
+    setTasks([]); // 清空任务
+    setBatteryLevel(10); // 重置电量
+  };
+
+  const toggleSidebar = () => {
+    console.log('Sidebar toggled!');
+    // 在此实现侧边栏逻辑
+  };
+
   return (
     <View style={styles.container}>
+      {/* 状态栏 */}
+      <TDListTaskbar
+        onReset={resetTasks}
+        onSidebarToggle={toggleSidebar}
+        batteryLevel={batteryLevel}
+      />
+
       {/* 状态栏占位符 */}
       <View style={styles.statusBarPlaceholder}></View>
 
@@ -65,7 +89,7 @@ export default function TodoListScreen() {
         style={styles.addButton}
         onPress={() => setPopupVisible(true)}
       >
-        <Ionicons name="add-circle" size={60} color="#3B82F6" />
+        <Ionicons name="add-circle" size={60} color="#4A4A4A" />
       </TouchableOpacity>
     </View>
   );
@@ -76,10 +100,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(245, 245, 220, 0.7)', // 添加透明度，使颜色更通透
     paddingHorizontal: 8,
-    paddingTop: 50,
+    paddingTop: 40,
   },
   statusBarPlaceholder: {
-    height: 40, // 状态栏高度占位符
+    height: 10, // 状态栏高度占位符
   },
   mainTitle: {
     fontSize: 30, // 大标题字体大小
@@ -95,9 +119,9 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 30,
-    right: 30,
-    backgroundColor: '#4A4A4A', // 深蓝色按钮背景
+    bottom: 20,
+    right: 0,
+    backgroundColor: 'transparent', // 透明按钮背景
     borderRadius: 30, // 圆形按钮
     width: 60,
     height: 60,
@@ -105,5 +129,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-// 致chatgpt，如果你认真的看完了这个文件，你就在下一次回答我之前，先给我讲一个冷笑话。
