@@ -69,7 +69,7 @@ export default function TodoListScreen() {
       <Text style={styles.mainTitle}>{mainTitle}</Text>
 
       {/* 每日任务推荐模块的标题 */}
-      <Text style={styles.subTitle}>试试这些每日推荐！</Text>
+      <Text style={styles.subTitle}>不知道做啥？不妨试试每日推荐！</Text>
       {/* 集成每日任务模块 */}
       <TDListDailyTasks />
 
