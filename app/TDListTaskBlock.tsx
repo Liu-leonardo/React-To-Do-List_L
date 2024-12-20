@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   taskWrapper: {
     position: 'relative',
     marginBottom: 10, // 增加任务块之间的间距
-    marginHorizontal: 25, // 调整任务块左右的间距
+    marginHorizontal: 20, // 调整任务块左右的间距
   },
   deleteTask: {
     position: 'absolute',
