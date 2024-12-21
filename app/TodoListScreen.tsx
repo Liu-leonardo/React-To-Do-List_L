@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 0,
-    backgroundColor: 'transparent', // 透明按钮背景
+    backgroundColor: '#B0B0B0', // 透明按钮背景
     borderRadius: 30, // 圆形按钮
     width: 60,
     height: 60,
